@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        div {
+            color: #FFF;
+            background-color: #FF0000;
+            font-size: 20px;
+            text-align: center;
+            height: 50px;
+            width: 300px;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div onclick="openScanner()">
+    调用二维码!
+</div>
+<script>
+    function openScanner() {
+        //  Dialog
+        api.confirm({
+            title: "提示",
+            msg: "是否调用二维码",
+            buttons: ["确定", "取消"]
+            //  Dialog回调
+        }, function (ret, err) {
+            switch (ret.buttonIndex) {
+                //  调用二维码..
+                case 1:
+                    var scanner = api.require('FNScanner')
+                    scanner.openScanner({
+                        //  sound 扫描之后的提示音路径wav
+                        //  autoretation 横竖屏是否自动旋转 false
+                        autorotation: true
+                        //  saveToAlbum 二维码是否自动保存到相册 false
+
+                        //  回调ret是结果 err是错误
+                    }, function (ret, err) {
+                        if (ret) {
+                            api.toast({
+                                msg: JSON.stringify(ret),
+                                duration: 2000,
+                                location: 'bottom'
+                            });
+                        } else {
+                            api.toast({
+                                msg: JSON.stringify(error),
+                                duration: 2000,
+                                location: 'bottom'
+                            });
+                        }
+                    });
+                    break;
+                //  其它就不做任何操作
+                default:
+                    break;
+            }
+        })
+
+    }
+
+
+</script>
+</body>
+</html>

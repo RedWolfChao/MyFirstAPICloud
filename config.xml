@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget id="A6057622569601">
+    <name>MyApp</name>
+    <content src="http://192.168.1.106:8080/html/hello.html"/>
+    <preference name="windowBackground" value="#FFF"/>
+</widget>
